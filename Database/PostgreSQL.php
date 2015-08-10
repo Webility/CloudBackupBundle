@@ -40,7 +40,7 @@ class PostgreSQL extends BaseDatabase
         }
 
         //TODO: pg_dump options support
-        $this->auth .= sprintf('--host %s --port %d --format plain --encoding UTF8', $params['db_host'], $params['db_port']);
+        $this->auth .= sprintf('--host %s --port %d --format plain --inserts --encoding UTF8', $params['db_host'], $params['db_port']);
     }
 
     /**
