@@ -33,7 +33,11 @@ class PostgreSQL extends BaseDatabase
         $this->fileName   = $this->database.'.sql';
 
         if ($params['db_password']) {
-            $this->authPrefix = sprintf('export PGPASSWORD="%s" && ', $params['db_password']);
+            if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
+                $this->authPrefix = sprintf('SET PGPASSWORD="%s" ; ', $params['db_password']);
+            } else {
+                $this->authPrefix = sprintf('export PGPASSWORD="%s" && ', $params['db_password']);
+            }
         }
         if ($params['db_user']) {
             $this->auth = sprintf('--username "%s" ', $params['db_user']);
