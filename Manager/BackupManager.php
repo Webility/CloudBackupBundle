@@ -69,7 +69,6 @@ class BackupManager
             $this->cm->upload($this->processor->getArchivePath());
         } catch (\Exception $e) {
             // Write log
-            throw $e;
             $this->logger->critical('[dizda-backup] Unexpected exception.', array('exception' => $e));
 
             $successful = false;
